@@ -190,6 +190,36 @@ class Pinky(Ghost):
             elif self.direction[0] == 'Left':
                 self.texture = pygame.image.load("Ghost_sprites/Pinky/Pinky_left.png")
 
+    def tick(self, s, pac, direc_pac):
+        self.square = int(s)
+        self.crossroad_func()
+        self.pos_arr = [(self.pos_y - self.square // 2) // self.square, (self.pos_x - self.square // 2) // self.square]
+
+        if self.mode == 1:
+            self.move(pac)
+        elif self.mode == 0:
+            self.mode_cooldown += 1
+            self.move_rand()
+
+        if self.mode_cooldown >= 600:
+            self.mode = 1
+            self.texture = pygame.image.load("Ghost_sprites/Pinky/Pinky_left.png")
+            self.mode_cooldown = 0
+
+        if self.life == 0:
+            self.death_cooldown += 1
+            self.pos_x = 1 * self.square
+            self.pos_y = 1 * self.square
+
+        if self.death_cooldown == 120:
+            self.life = 1
+            self.pos_x = 14 * self.square - self.square // 2
+            self.pos_y = 15 * self.square - self.square // 2
+            self.mode = 1
+            self.direction = ["none", 0, True]
+            self.texture = pygame.image.load("Ghost_sprites/Pinky/Pinky_left.png")
+            self.death_cooldown = 0
+
 
 class Inky(Ghost):
     def __init__(self, x, y):
@@ -207,6 +237,36 @@ class Inky(Ghost):
             elif self.direction[0] == 'Left':
                 self.texture = pygame.image.load("Ghost_sprites/Inky/Inky_left.png")
 
+    def tick(self, s, pac, direc_pac):
+        self.square = int(s)
+        self.crossroad_func()
+        self.pos_arr = [(self.pos_y - self.square // 2) // self.square, (self.pos_x - self.square // 2) // self.square]
+
+        if self.mode == 1:
+            self.move(pac)
+        elif self.mode == 0:
+            self.mode_cooldown += 1
+            self.move_rand()
+
+        if self.mode_cooldown >= 600:
+            self.mode = 1
+            self.texture = pygame.image.load("Ghost_sprites/Inky/Inky_left.png")
+            self.mode_cooldown = 0
+
+        if self.life == 0:
+            self.death_cooldown += 1
+            self.pos_x = 1 * self.square
+            self.pos_y = 1 * self.square
+
+        if self.death_cooldown == 120:
+            self.life = 1
+            self.pos_x = 14 * self.square - self.square // 2
+            self.pos_y = 15 * self.square - self.square // 2
+            self.mode = 1
+            self.direction = ["none", 0, True]
+            self.texture = pygame.image.load("Ghost_sprites/Inky/Inky_left.png")
+            self.death_cooldown = 0
+
 
 class Klyde(Ghost):
     def __init__(self, x, y):
@@ -223,3 +283,33 @@ class Klyde(Ghost):
                 self.texture = pygame.image.load("Ghost_sprites/Klyde/Klyde_right.png")
             elif self.direction[0] == 'Left':
                 self.texture = pygame.image.load("Ghost_sprites/Klyde/Klyde_left.png")
+    
+    def tick(self, s, pac, direc_pac):
+        self.square = int(s)
+        self.crossroad_func()
+        self.pos_arr = [(self.pos_y - self.square // 2) // self.square, (self.pos_x - self.square // 2) // self.square]
+
+        if self.mode == 1:
+            self.move(pac)
+        elif self.mode == 0:
+            self.mode_cooldown += 1
+            self.move_rand()
+
+        if self.mode_cooldown >= 600:
+            self.mode = 1
+            self.texture = pygame.image.load("Ghost_sprites/Klyde/Klyde_left.png")
+            self.mode_cooldown = 0
+
+        if self.life == 0:
+            self.death_cooldown += 1
+            self.pos_x = 1 * self.square
+            self.pos_y = 1 * self.square
+
+        if self.death_cooldown == 120:
+            self.life = 1
+            self.pos_x = 14 * self.square - self.square // 2
+            self.pos_y = 15 * self.square - self.square // 2
+            self.mode = 1
+            self.direction = ["none", 0, True]
+            self.texture = pygame.image.load("Ghost_sprites/Klyde/Klyde_left.png")
+            self.death_cooldown = 0

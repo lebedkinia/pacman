@@ -138,7 +138,6 @@ class Pacman:
                                 int(map_data[self.pos_arr[0] - 1][self.pos_arr[1]] != 1)
 
     def portal(self):
-
         # функция портала
         self.pos_arr = [(self.pos_y - self.square // 2) // self.square, (self.pos_x - self.square // 2) // self.square]
 
@@ -165,10 +164,8 @@ class Pacman:
         start_angle = math.radians(0)
         end_angle = math.radians(360)
         # print(start_angle, end_angle)
-        pygame.draw.rect(screen, rect=(
-            self.pos_x - self.rad_pacman, self.pos_y - self.rad_pacman, self.rad_pacman * 2, self.rad_pacman * 2),
-                         color=(255, 255, 0))
-        # pygame.draw.circle(screen, (255, 0, 0), ((self.pos_x + self.rad_pacman) / 2, (self.pos_y + self.rad_pacman) / 2), 10)
+        # pygame.draw.circle(screen, rect=(self.pos_x - self.rad_pacman, self.pos_y - self.rad_pacman, self.rad_pacman * 2, self.rad_pacman * 2), color=(255, 255, 0))
+        pygame.draw.circle(screen, (255, 255, 0), (self.pos_x, self.pos_y), 10)
         # pygame.gfxdraw.pie(screen, (self.pos_x + self.rad_pacman) / 2, (self.pos_y + self.rad_pacman) / 2, 75, start_angle, end_angle, (255, 0, 0))
 
     def resize(self, s):

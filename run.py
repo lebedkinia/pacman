@@ -105,13 +105,22 @@ class RoundedWall:
                     self.draw_wall_segment(screen, x, y, form)
 
 
-def deth_screen(screen, width, height):
+def death_screen(screen, width, height):
     font = pygame.font.SysFont(None, 100)
     text = font.render("Game Over", True, (255, 0, 0))
     screen.fill((0, 0, 0))
     screen.blit(text, (width // 4, height // 5))
     pygame.display.flip()
     time.sleep(2)
+
+def end_screen(screen, width, height):
+    font = pygame.font.SysFont(None, 100)
+    text = font.render("You win", True, (0, 255, 0))
+    screen.fill((0, 0, 0))
+    screen.blit(text, (width // 4, height // 5))
+    pygame.display.flip()
+    time.sleep(2)
+
 
 
 def main():
@@ -168,6 +177,11 @@ def main():
             if keys[pygame.K_ESCAPE]:
                 pygame.quit()
                 exit(0)
+
+        elif hero.score > 3500:
+            dead = False
+            menu = False
+            end_screen(screen, width, height)
 
         elif start_game and not dead:
             wall.draw(screen)
@@ -238,7 +252,7 @@ def main():
             if dead_pucman[0] < dead_pucman[1]:
                 dead_pucman[0] += 1.5
                 dead_pucman[1] -= 1.5
-            deth_screen(screen, width, height)
+            death_screen(screen, width, height)
             keys = pygame.key.get_pressed()
             if keys[pygame.K_SPACE]:
                 dead = False
@@ -257,26 +271,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-    # def draw_wall_segment(self, screen, x, y, form):
-    #     cx, cy = x * square, y * square
-    #     size = square
-    #     line_size = square
-    #     color_blue = (0, 0, 255)
-    #     color_black = (0, 0, 0)
-    #
-    #     if form == "inner_bottom_left":
-    #         pygame.draw.arc(screen, color_blue, (cx - size // 2, cy - size // 2, size, size), 0, 90, 3)
-    #         pygame.draw.arc(screen, color_black, (cx - size // 2, cy - size // 2, size - line_size // 2, size - line_size // 2), 0, 90, 5)
-    #     elif form == "inner_bottom_right":
-    #         pygame.draw.arc(screen, color_blue, (cx + size // 2, cy - size // 2, size, size), 90, 180, 3)
-    #         pygame.draw.arc(screen, color_black, (cx + size // 2, cy - size // 2, size - line_size // 2, size - line_size // 2), 90, 180, 5)
-    #     elif form == "inner_top_left":
-    #         pygame.draw.arc(screen, color_blue, (cx - size // 2, cy + size // 2, size, size), 270, 360, 3)
-    #         pygame.draw.arc(screen, color_black, (cx - size // 2, cy + size // 2, size - line_size // 2, size - line_size // 2), 270, 360, 5)
-    #     elif form == "inner_top_right":
-    #         pygame.draw.arc(screen, color_blue, (cx + size // 2, cy + size // 2, size, size), 180, 270, 3)
-    #         pygame.draw.arc(screen, color_black, (cx + size // 2, cy + size // 2, size - line_size // 2, size - line_size // 2), 180, 270, 5)
-    #     elif form == "vertical":
-    #         pygame.draw.rect(screen, color_blue, (cx + size // 3, cy, size // 3, size))
-    #     elif form == "horizontal":
-    #         pygame.draw.rect(screen, color_blue, (cx, cy + size // 3, size, size // 3))
